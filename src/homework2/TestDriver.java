@@ -88,10 +88,7 @@ public class TestDriver {
       		} else if (command.equals("FindPath")) {
         		findPath(arguments);
       		} else if (command.equals("DfsAlgorithm")){
-				// dfsAlgorithm(arguments);
-      			// TODO: add back this line, check if needed to add a
-      			// method that knows how to deal with the list of arguments
-      			// and acll the methods that already exist.
+				dfsAlgorithm(arguments);
 			}else {
         		output.println("Unrecognized command: " + command);
       		}
@@ -166,10 +163,11 @@ public class TestDriver {
   		 
   		Graph graph = graphs.get(graphName);
   		WeightedNode node = nodes.get(nodeName);
+  		Node<Integer> nodeInstance = new Node<Integer>(0,node.getName(),node.getCost());
   		if(graph == null || node == null) {
   			output.println("addNode - objects not found");
   		}
-  		graph.addNode((Node<Integer>) node);
+  		graph.addNode(nodeInstance);
   		output.println("added node "+nodeName+" to "+graphName);
   	}
 
@@ -252,15 +250,28 @@ public class TestDriver {
   		for (WeightedNode n : children) {
   			output.print(" "+n.getName());	
   		}
-  		output.println("");
-  		    
-  		// ___ = graphs.get(graphName);
-  		// ___ = nodes.get(parentName);
-  		// output.println(...);
-  		
+  		output.println("");  		
   	}
 
 
+  	private void dfsAlgorithm(List<String> arguments) {
+  		
+    	if (arguments.size() < 2)
+      		throw new CommandException(
+				"Bad arguments to dfsAlgorithm: " + arguments);
+  		
+    	String graphName = arguments.get(0);
+    	String srcName = arguments.get(1);
+    	if ( arguments.size() > 2) {
+    	String dstName = arguments.get(2);
+    		dfsAlgorithm(graphName, srcName, dstName);
+    	}else {
+    		dfsAlgorithm(graphName, srcName);
+    	}
+
+    	
+  	}
+  	
   	private void findPath(List<String> arguments) {
 
     	String graphName;
@@ -312,19 +323,34 @@ public class TestDriver {
 	
 	private void dfsAlgorithm(String graphName, String sourceArg,
 							  String destArg) {
-	// TODO: Insert you code here.			
-	// ___ = graphs.get(graphName);
-  	// ___ = nodes.get(sourceArgs);
-  	// ___ = nodes.get(destArgs);
-  	// output.println(...);
+  		if(graphName == null || sourceArg == null)
+  			throw new CommandException(
+  					"graph/source args invalid");
+ 		Graph<Integer> graph = graphs.get(graphName);
+ 		Node<Integer> src = (Node<Integer>)nodes.get(sourceArg);
+ 		Node<Integer> dst = (destArg != null) ? (Node<Integer>)nodes.get(destArg) : null;
+ 		NodeCountingPath dfs_tree = graph.getDFStree(src, dst);
+ 		output.print("dfs algorithm output "+graphName+" "+sourceArg);
+ 		if(destArg != null)  
+ 			output.print(" -> "+destArg);
+ 		output.print(":");
+ 		
+ 		if (destArg != null && !dfs_tree.getEnd().equals(dst)) {
+ 			output.println(" no path was found");
+ 		}
+ 		else {
+ 			Iterator<WeightedNode> it = dfs_tree.iterator();
+ 			while (it.hasNext()) {
+ 				WeightedNode n = it.next();
+ 				output.print(" "+n.getName());
+ 			}
+ 			output.println("");
+ 		}
 	
 	}
 	
 	private void dfsAlgorithm(String graphName, String sourceArg) {
-	// TODO: Insert you code here.	
-	// ___ = graphs.get(graphName);
-  	// ___ = nodes.get(sourceArgs);
-  	// output.println(...);	
+		dfsAlgorithm(graphName, sourceArg,null);
 	}
 	
 

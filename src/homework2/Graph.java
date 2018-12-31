@@ -66,10 +66,13 @@ public class Graph<T> {
 		if(verticies.contains(parentNode) == false || verticies.contains(childNode) == false) {
 			throw new IllegalArgumentException("nodes not found in graph");
 		}
-		if (parentNode.findEdge(childNode) == null) {
-			 Edge<T> e = new Edge<T>(parentNode, childNode);
-			parentNode.addEdge(e);
-			childNode.addEdge(e);
+		Node<T> pN = verticies.get(verticies.indexOf(parentNode));
+		Node<T> cN = verticies.get(verticies.indexOf(childNode));
+		if (pN.findEdge(cN) == null) {
+			 Edge<T> e = new Edge<T>(pN, cN);
+			pN.addEdge(e);
+			if(!parentNode.equals(childNode)) //do not duplicate self loops
+				cN.addEdge(e);
 		}
 	}
 	
@@ -82,6 +85,16 @@ public class Graph<T> {
 	 */
 	public List<Node<T>> getNodes(){
 		return verticies;
+	}
+	
+	public <T> NodeCountingPath getDFStree(Node<Integer> src, Node<Integer> dst){
+		//find graph nodes that are equal to the input
+		@SuppressWarnings("unchecked")
+		Node<T> srcInstance = (Node<T>) verticies.get(verticies.indexOf(src));
+		@SuppressWarnings("unchecked")
+		Node<T> dstInstance = (dst != null ) ? (Node<T>) verticies.get(verticies.indexOf(dst)) : null;
+		
+		return DfsAlgorithm.DFS(srcInstance,dstInstance);
 	}
 	
 	public List<WeightedNode> getNodesRecords(){

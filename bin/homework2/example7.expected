@@ -1,0 +1,93 @@
+created graph GRAPH
+created node a with cost 5
+created node b with cost 5
+created node c with cost 5
+created node d with cost 5
+created node e with cost 5
+created node f with cost 5
+created node g with cost 5
+created node h with cost 5
+created node i with cost 5
+created node j with cost 5
+created node k with cost 5
+created node l with cost 5
+created node m with cost 5
+created node n with cost 5
+created node o with cost 5
+created node p with cost 5
+created node q with cost 5
+created node r with cost 5
+created node s with cost 5
+created node t with cost 5
+created node u with cost 5
+created node v with cost 5
+created node w with cost 5
+created node x with cost 5
+created node y with cost 5
+created node z with cost 5
+added node a to GRAPH
+added node b to GRAPH
+added node c to GRAPH
+added node d to GRAPH
+added node e to GRAPH
+added node f to GRAPH
+added node g to GRAPH
+added node h to GRAPH
+added node i to GRAPH
+added node j to GRAPH
+added node k to GRAPH
+added node l to GRAPH
+added node m to GRAPH
+added node n to GRAPH
+added node o to GRAPH
+added node p to GRAPH
+added node q to GRAPH
+added node r to GRAPH
+added node s to GRAPH
+added node t to GRAPH
+added node u to GRAPH
+added node v to GRAPH
+added node w to GRAPH
+added node x to GRAPH
+added node y to GRAPH
+added node z to GRAPH
+added edge from a to b in GRAPH
+added edge from b to c in GRAPH
+added edge from c to d in GRAPH
+added edge from d to e in GRAPH
+added edge from e to f in GRAPH
+added edge from f to g in GRAPH
+added edge from g to h in GRAPH
+added edge from h to i in GRAPH
+added edge from i to j in GRAPH
+added edge from j to k in GRAPH
+added edge from k to l in GRAPH
+added edge from l to m in GRAPH
+added edge from m to n in GRAPH
+added edge from n to o in GRAPH
+added edge from o to p in GRAPH
+added edge from p to q in GRAPH
+added edge from q to r in GRAPH
+added edge from r to s in GRAPH
+added edge from s to t in GRAPH
+added edge from t to u in GRAPH
+added edge from u to v in GRAPH
+added edge from v to w in GRAPH
+added edge from w to x in GRAPH
+added edge from x to y in GRAPH
+added edge from y to z in GRAPH
+GRAPH contains: a b c d e f g h i j k l m n o p q r s t u v w x y z
+added edge from f to a in GRAPH
+added edge from k to f in GRAPH
+added edge from p to k in GRAPH
+added edge from u to p in GRAPH
+added edge from z to u in GRAPH
+dfs algorithm output GRAPH a: a b c d e f g h i j k l m n o p q r s t u v w x y z
+found path in GRAPH: a b c d e f g h i j k l m n o p q r s t u v w x y z with cost 26
+added edge from a to f in GRAPH
+added edge from f to k in GRAPH
+added edge from k to p in GRAPH
+added edge from p to u in GRAPH
+added edge from u to z in GRAPH
+dfs algorithm output GRAPH a: a f k p u z v w x y q r s t l m n o g h i j b c d e
+found path in GRAPH: a f k p u z with cost 6

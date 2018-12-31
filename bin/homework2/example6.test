@@ -1,0 +1,93 @@
+CreateGraph GRAPH
+CreateNode a 5
+CreateNode b 10
+CreateNode c 15
+CreateNode d 20
+CreateNode e 25
+CreateNode f 30
+CreateNode g 35
+CreateNode h 40
+CreateNode i 45
+CreateNode j 50
+CreateNode k 55
+CreateNode l 60
+CreateNode m 65
+CreateNode n 70
+CreateNode o 75
+CreateNode p 80
+CreateNode q 85
+CreateNode r 90
+CreateNode s 95
+CreateNode t 100
+CreateNode u 105
+CreateNode v 110
+CreateNode w 115
+CreateNode x 120
+CreateNode y 125
+CreateNode z 130
+AddNode GRAPH a
+AddNode GRAPH b
+AddNode GRAPH c
+AddNode GRAPH d
+AddNode GRAPH e
+AddNode GRAPH f
+AddNode GRAPH g
+AddNode GRAPH h
+AddNode GRAPH i
+AddNode GRAPH j
+AddNode GRAPH k
+AddNode GRAPH l
+AddNode GRAPH m
+AddNode GRAPH n
+AddNode GRAPH o
+AddNode GRAPH p
+AddNode GRAPH q
+AddNode GRAPH r
+AddNode GRAPH s
+AddNode GRAPH t
+AddNode GRAPH u
+AddNode GRAPH v
+AddNode GRAPH w
+AddNode GRAPH x
+AddNode GRAPH y
+AddNode GRAPH z
+AddEdge GRAPH a b
+AddEdge GRAPH b c
+AddEdge GRAPH c d
+AddEdge GRAPH d e
+AddEdge GRAPH e f
+AddEdge GRAPH f g
+AddEdge GRAPH g h
+AddEdge GRAPH h i
+AddEdge GRAPH i j
+AddEdge GRAPH j k
+AddEdge GRAPH k l
+AddEdge GRAPH l m
+AddEdge GRAPH m n
+AddEdge GRAPH n o
+AddEdge GRAPH o p
+AddEdge GRAPH p q
+AddEdge GRAPH q r
+AddEdge GRAPH r s
+AddEdge GRAPH s t
+AddEdge GRAPH t u
+AddEdge GRAPH u v
+AddEdge GRAPH v w
+AddEdge GRAPH w x
+AddEdge GRAPH x y
+AddEdge GRAPH y z
+ListNodes GRAPH
+AddEdge GRAPH f a
+AddEdge GRAPH k f
+AddEdge GRAPH p k
+AddEdge GRAPH u p
+AddEdge GRAPH z u
+DfsAlgorithm GRAPH a
+FindPath GRAPH a -> z
+AddEdge GRAPH a f
+AddEdge GRAPH f k
+AddEdge GRAPH k p
+AddEdge GRAPH p u
+AddEdge GRAPH u z
+DfsAlgorithm GRAPH a
+FindPath GRAPH a -> z

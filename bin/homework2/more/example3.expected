@@ -9,4 +9,5 @@ added node n3 to A
 added edge from n3 to n1 in A
 added edge from n3 to n2 in A
 dfs algorithm output A n1 -> n2: no path was found
-dfs algorithm output A n3 -> n2: n3 n1 n2
+dfs algorithm output A n3 -> n2: n3 n1 n2 
+found path in A: n3 n1 with cost 2
