@@ -55,6 +55,11 @@ public class NodeCountingPath implements Path<WeightedNode, NodeCountingPath> {
   	 * Cost of this NodeCountingPath (that is, its length).
   	 */
   	private final int cost;
+  	
+  	/**
+  	 * Indicator if the path contains cycles (one or more).
+  	 */
+  	private final boolean hasCycle;
 
 
   	/**
@@ -65,6 +70,17 @@ public class NodeCountingPath implements Path<WeightedNode, NodeCountingPath> {
      */
   	public NodeCountingPath(WeightedNode node) {
     	this(node, null);
+  	}
+  	
+  	/**
+     * Creates an empty NodeCountingPath with infinite cost.
+     * @effects Creates a new NodeCountingPath with infinite cost
+     */
+  	public NodeCountingPath() {
+    	this.cost = Integer.MAX_VALUE;
+    	this.path = null;
+    	this.node = null;
+    	this.hasCycle = false;
   	}
 
 
@@ -81,16 +97,21 @@ public class NodeCountingPath implements Path<WeightedNode, NodeCountingPath> {
 
     	this.node = node;
     	this.path = path;
-
-    	if (path != null)
-			//TODO: update the following line to support back edges
-      		this.cost = 1 + path.cost;
-    	else
-			//TODO: update the following line to support back edges
-      		this.cost = 1;
+    	
+    	int backwardEdgeCost =  node.WasDiscoveredByBackwardEdge() ? 1 : 0;
+    	
+    	if (path != null) {
+      		this.cost = 1 + backwardEdgeCost + path.cost;
+    		this.hasCycle = path.hasCycle;
+    	}
+    	else {
+      		this.cost = 1 + backwardEdgeCost;
+      		this.hasCycle = node.WasDiscoveredByBackwardEdge();
+    	}
+    	
   	}
 
-	
+  	
   	/**
      * Creates an extended path by adding a new node to its end.
      * @requires node != null
@@ -110,7 +131,6 @@ public class NodeCountingPath implements Path<WeightedNode, NodeCountingPath> {
   	public double getCost() {
     	return this.cost;
   	}
-
 
   	/**
      * Returns an Iterator over the elements in the path .
@@ -180,6 +200,14 @@ public class NodeCountingPath implements Path<WeightedNode, NodeCountingPath> {
 	 */
   	public int hashCode() {
     	return node.hashCode() + (this.path == null ? 0 : 13*path.hashCode());
+  	}
+  	
+	/**
+	 * Returns a hash code value for this.
+	 * @return a hash code value for this.
+	 */
+  	public boolean hasCycle() {
+    	return this.hasCycle;
   	}
   	
   	

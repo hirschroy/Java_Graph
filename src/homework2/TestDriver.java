@@ -312,13 +312,35 @@ public class TestDriver {
   	private void findPath(String graphName, List<String> sourceArgs,
   						  List<String> destArgs) {
   		
-  		// TODO: Insert your code here.
+  		if(graphName == null || sourceArgs == null)
+  			throw new CommandException(
+  					"graph/source args invalid");
   		   
-  		// ___ = graphs.get(graphName);
-  		// ___ = nodes.get(sourceArgs.get(i));
-  		// ___ = nodes.get(destArgs.get(i));
-  		// output.println(...);
-		
+  		Graph<Integer> graph = graphs.get(graphName);
+  		List<Node<Integer>> start = new ArrayList<>();
+  		for(String s : sourceArgs) {
+  			start.add((Node<Integer>)nodes.get(s));
+  		}
+		List<Node<Integer>> end = new ArrayList<>();
+  		for(String s : destArgs) {
+  			end.add((Node<Integer>)nodes.get(s));
+  		}
+  		graph.resetDFSData();
+  		NodeCountingPath minPath = graph.findMinPath(start,end);
+  		output.print("found path in "+graph.getName()+":");
+			Iterator<WeightedNode> it = minPath.iterator();
+			while (it.hasNext()) {
+				WeightedNode n = it.next();
+				output.print(" "+n.getName());
+			}
+			output.print(" with cost ");
+			if(minPath.getCost() % 1 == 0){
+			output.println((int)(minPath.getCost()));
+			} else {
+				output.println(minPath.getCost());	
+			}
+  		 
+		graph.resetDFSData();
   	}
 	
 	private void dfsAlgorithm(String graphName, String sourceArg,
@@ -346,7 +368,7 @@ public class TestDriver {
  			}
  			output.println("");
  		}
-	
+ 		graph.resetDFSData();
 	}
 	
 	private void dfsAlgorithm(String graphName, String sourceArg) {

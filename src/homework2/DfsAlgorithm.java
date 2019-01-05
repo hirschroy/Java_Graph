@@ -41,6 +41,7 @@ public class DfsAlgorithm<T> {
 			 
 			 //check if reached end
 			 if(end_node && current.equals(end)) {
+				 current.setColor("White"); //reset
 				 return dfs_tree;
 			 }
 			 @SuppressWarnings("unchecked")
@@ -56,10 +57,13 @@ public class DfsAlgorithm<T> {
 				    }  
 				});
 				
+				//check if there are no more children to check
 				for(Node<T> c : children) {
 					if(c.getColor()=="White") {
 						nodeStack.add(c);
 						touchedNodes.add(c);
+					}else { //child is still being visited - backward edge found
+						c.setDiscoveredByBackwardEdge(true);
 					}
 					c.setColor("Gray");
 				}

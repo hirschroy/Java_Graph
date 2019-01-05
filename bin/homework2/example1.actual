@@ -21,4 +21,5 @@ the children of n2 in graph1 are:
 dfs algorithm output graph1 n1: n1 n2
 
 # Find a path
+found path in graph1: n1 n2 with cost 2
 

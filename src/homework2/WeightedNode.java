@@ -8,19 +8,24 @@ public class WeightedNode implements Comparable<WeightedNode> {
 	/**
 	 * Name of this node.
 	 */
-  	private final String name;
+  	protected final String name;
   	
   	
   	/**
   	 * Cost of this node.
   	 */
-  	private final int cost;
+  	protected final int cost;
 
 	
   	/**
   	 * Color of this node.
   	 */	
-	private String color;
+	protected String color;
+	
+  	/**
+  	 * Class of the DFS edge that discovered this node.
+  	 */	
+	protected boolean discoveredByBackwardEdge;
 	
 	
 	
@@ -35,6 +40,7 @@ public class WeightedNode implements Comparable<WeightedNode> {
     	this.name = name;
       	this.cost = cost;
 		this.color = "White";
+		this.discoveredByBackwardEdge = false;
   	}
 
   
@@ -70,6 +76,24 @@ public class WeightedNode implements Comparable<WeightedNode> {
      */	
 	public void setColor(String color){
 		this.color = color;
+	}
+	
+
+	/**
+	 * Returns this.discoveredByBackwardEdge.
+     * @return this.color
+     */	
+	public boolean WasDiscoveredByBackwardEdge(){
+		return discoveredByBackwardEdge;
+	}
+	
+	/**
+	 * @requires none
+	 * @modifies this.discoveredByBackwardEdge
+	 * @effects the color of the object
+     */	
+	public void setDiscoveredByBackwardEdge(boolean state){
+		discoveredByBackwardEdge = state;
 	}
 	
 	/**
